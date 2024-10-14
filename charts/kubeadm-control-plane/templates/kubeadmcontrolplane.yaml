@@ -1,0 +1,22 @@
+apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+kind: KubeadmControlPlane
+metadata:
+  name: {{ include "kubeadm.control-plane.metadata.name" . }}
+  namespace: {{ include "kubeadm.control-plane.metadata.namespace" . }}
+  labels: {{- include "kubeadm.control-plane.metadata.labels" . | nindent 4 }}
+spec:
+  version: {{ .Values.version }}
+  replicas: {{ .Values.replicas }}
+  kubeadmConfigSpec:
+    clusterConfiguration:
+      apiServer:
+        certSANs:
+          - localhost
+          - 127.0.0.1
+          - 0.0.0.0
+  machineTemplate:
+    infrastructureRef:
+      apiVersion: {{ .Values.machineTemplate.infrastructureRef.apiVersion }}
+      kind: {{ .Values.machineTemplate.infrastructureRef.kind }}
+      name: {{ .Values.machineTemplate.infrastructureRef.name | default (include "kubeadm.control-plane.metadata.template-name" . ) }}
+      namespace: {{ .Values.machineTemplate.infrastructureRef.name | default (include "kubeadm.control-plane.metadata.namespace" . ) }}

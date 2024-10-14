@@ -1,0 +1,13 @@
+metadata:
+  name: "" # If not specified, Helm release name is used
+  namespace: "" # If not specified, Helm release namespace is used
+
+version: 1.31.0
+replicas: 3
+
+machineTemplate:
+  infrastructureRef:
+    apiVersion: ""
+    kind: ""
+    name: ""
+    namespace: ""
