@@ -3,7 +3,7 @@
     We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "kubeadm.control-plane.metadata.name" -}}
-{{- .Values.metadata.name | default .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- .Values.metadata.name | default .Values.global.metadata.name | default .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
@@ -11,7 +11,7 @@
     We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "kubeadm.control-plane.metadata.namespace" -}}
-{{- .Values.metadata.namespace | default .Release.Namespace | trunc 63 | trimSuffix "-" }}
+{{- .Values.metadata.namespace | default .Values.global.metadata.namespace | default .Release.Namespace | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*

@@ -5,7 +5,7 @@ metadata:
   namespace: {{ include "kubeadm.control-plane.metadata.namespace" . }}
   labels: {{- include "kubeadm.control-plane.metadata.labels" . | nindent 4 }}
 spec:
-  version: {{ .Values.version }}
+  version: {{ .Values.kubernetesVersion | default .Values.global.kubernetesVersion }}
   replicas: {{ .Values.replicas }}
   kubeadmConfigSpec:
     clusterConfiguration:
