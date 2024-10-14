@@ -1,0 +1,8 @@
+#
+# Global values to are used across resources in this and other charts.
+#
+global:
+  metadata:
+    name: global-foo
+    namespace: global-example
+  kubernetesVersion: 1.29.1
